@@ -34,7 +34,13 @@ class BookElement extends React.PureComponent<Props, {}> {
         <Container>
           <img style={{ height: '200px', objectFit: 'contain' }} src={book.image} />
           <div
-            style={{ padding: '15px 10px', height: '45px', display: 'flex', alignItems: 'center' }}
+            style={{
+              padding: '15px 10px',
+              height: '45px',
+              display: 'flex',
+              alignItems: 'center',
+              maxWidth: '190px',
+            }}
           >
             {book.title}
           </div>
