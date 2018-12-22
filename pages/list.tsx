@@ -20,7 +20,7 @@ class List extends React.PureComponent<Props, {}> {
   static async getInitialProps(context: NextContext) {
     const search = context.query.search;
     if (search) {
-      const baseQuery = `q=${search}`;
+      const baseQuery = `title_like=${search}`;
       const response = await axios.get(
         encodeURI(
           `http://localhost:8000/api/books?${baseQuery}&_sort=time&_order=desc` +
