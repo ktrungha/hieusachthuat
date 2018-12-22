@@ -2,7 +2,6 @@ import React from 'react';
 import Autosuggest from 'react-autosuggest';
 import { debounce } from 'lodash';
 import Book from '../models/Book';
-import { withRouter, WithRouterProps } from 'next/router';
 import '../styles/react-autosuggest.css';
 
 interface State {
@@ -11,7 +10,7 @@ interface State {
   bookId: number;
 }
 
-interface Props extends WithRouterProps {}
+interface Props {}
 
 class SearchBox extends React.PureComponent<Props, State> {
   constructor(props: Props) {
@@ -42,7 +41,6 @@ class SearchBox extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { router } = this.props;
     const { options, search } = this.state;
     return (
       <div style={{ margin: '15px' }}>
@@ -58,9 +56,7 @@ class SearchBox extends React.PureComponent<Props, State> {
             value: search,
             onKeyDown: (event) => {
               if (event.keyCode === 13) {
-                if (router) {
-                  router.push(`/list?search=${this.state.search}`);
-                }
+                window.location.href = encodeURI(`/list?search=${this.state.search}`);
               }
             },
           }}
@@ -75,9 +71,7 @@ class SearchBox extends React.PureComponent<Props, State> {
           }}
           onSuggestionSelected={(_event, { suggestion }) => {
             this.setState({ bookId: suggestion.id }, () => {
-              if (router) {
-                router.push(`/book?id=${this.state.bookId}`);
-              }
+              window.location.href = encodeURI(`/book?id=${this.state.bookId}`);
             });
           }}
         />
@@ -86,4 +80,4 @@ class SearchBox extends React.PureComponent<Props, State> {
   }
 }
 
-export default withRouter(SearchBox);
+export default SearchBox;
