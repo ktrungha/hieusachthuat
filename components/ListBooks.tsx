@@ -7,6 +7,7 @@ export const fetchSize = 10;
 
 interface Props {
   books: Book[];
+  mobile: boolean;
   fetchMore: (offset: number, limit: number) => Promise<Book[]>;
 }
 
@@ -16,13 +17,17 @@ interface State {
 }
 
 class ListBooks extends React.PureComponent<Props, State> {
+  public static defaultProps = {
+    mobile: false,
+  };
+
   state = {
     moreBooks: [] as Book[],
     offset: fetchSize,
   };
 
   render() {
-    const { books, fetchMore } = this.props;
+    const { books, fetchMore, mobile } = this.props;
     const { moreBooks, offset } = this.state;
     return (
       <div
@@ -31,15 +36,16 @@ class ListBooks extends React.PureComponent<Props, State> {
           flexDirection: 'column',
           alignItems: 'center',
           padding: '20px',
-          width: '100%',
         }}
       >
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div
+          style={{ display: 'flex', flexWrap: 'wrap', justifyContent: mobile ? 'center' : 'start' }}
+        >
           {books.map((book) => {
-            return <BookElement key={book.id} book={book} />;
+            return <BookElement mobile={mobile} key={book.id} book={book} />;
           })}
           {moreBooks.map((book) => {
-            return <BookElement key={book.id} book={book} />;
+            return <BookElement mobile={mobile} key={book.id} book={book} />;
           })}
         </div>
         <div style={{ margin: 'auto' }}>

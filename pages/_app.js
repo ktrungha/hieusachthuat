@@ -1,25 +1,38 @@
-import React from 'react'
-import App, { Container } from 'next/app'
-import '../styles/index.css'
+import React from 'react';
+import App, { Container } from 'next/app';
+import '../styles/index.css';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import blue from '@material-ui/core/colors/blue';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+  },
+  typography: {
+    useNextVariants: true,
+  },
+});
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
-    let pageProps = {}
+    let pageProps = {};
 
     if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
+      pageProps = await Component.getInitialProps(ctx);
     }
 
-    return { pageProps }
+    return { pageProps };
   }
 
-  render () {
-    const { Component, pageProps } = this.props
+  render() {
+    const { Component, pageProps } = this.props;
 
     return (
       <Container>
-        <Component {...pageProps} />
+        <MuiThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </MuiThemeProvider>
       </Container>
-    )
+    );
   }
 }

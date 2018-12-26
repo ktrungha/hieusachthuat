@@ -9,6 +9,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  display: inline-block;
+  min-width: 110px;
+  max-width: 200px;
   :hover {
     cursor: pointer;
   }
@@ -17,22 +20,28 @@ const Container = styled.div`
 interface Props {
   book: Book;
   edit: boolean;
+  mobile: boolean;
 }
 
 class BookElement extends React.PureComponent<Props, {}> {
   public static defaultProps = {
     edit: false,
+    mobile: false,
   };
 
   render() {
-    const { book, edit } = this.props;
+    const { book, edit, mobile } = this.props;
     return (
-      <a
-        style={{ textDecoration: 'none', color: 'inherit' }}
-        href={edit ? `/edit-book?id=${book.id}` : `/book?id=${book.id}`}
+      <Container
+        style={{
+          width: mobile ? 'calc(50% - 20px)' : 'calc(20% - 20px)',
+        }}
       >
-        <Container>
-          <img style={{ height: '200px', objectFit: 'contain' }} src={book.image} />
+        <a
+          style={{ textDecoration: 'none', color: 'inherit' }}
+          href={edit ? `/edit-book?id=${book.id}` : `/book?id=${book.id}`}
+        >
+          <img style={{ width: '100%', objectFit: 'contain', display: 'block' }} src={book.image} />
           <div
             style={{
               padding: '15px 10px',
@@ -40,12 +49,13 @@ class BookElement extends React.PureComponent<Props, {}> {
               display: 'flex',
               alignItems: 'center',
               maxWidth: '190px',
+              whiteSpace: 'normal',
             }}
           >
             {book.title}
           </div>
-        </Container>
-      </a>
+        </a>
+      </Container>
     );
   }
 }

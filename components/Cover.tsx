@@ -8,7 +8,6 @@ class Cover extends React.PureComponent {
     return (
       <div
         style={{
-          margin: '20px',
           borderRadius: '10px',
           boxShadow: `0 0 5px 1px ${colors.shadow}`,
           overflow: 'hidden',

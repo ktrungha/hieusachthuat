@@ -8,6 +8,16 @@ import Head from 'next/head';
 import MediaQuery from 'react-responsive';
 import BookDesktopLayout from '../components/BookDesktopLayout';
 import axios from 'axios';
+import BookMobileLayout from '../components/BookMobileLayout';
+import { stack as Menu } from 'react-burger-menu';
+import styled from 'styled-components';
+import Category from '../models/Category';
+
+const A = styled.a`
+  text-decoration: none;
+  color: inherit;
+  flex-grow: 1;
+`;
 
 interface Props {
   book: Book;
@@ -29,7 +39,7 @@ class BookPage extends React.PureComponent<Props, {}> {
     const footer = <Footer />;
     const bookElement = (
       <div
-        style={{ width: '100%', display: 'flex', alignItems: 'center', flexDirection: 'column' }}
+        style={{ margin: '15px', display: 'flex', alignItems: 'center', flexDirection: 'column' }}
       >
         <img src={book.image} style={{ width: '250px', height: '250px', objectFit: 'contain' }} />
         <div style={{ margin: '10px 20px' }}>{book.title}</div>
@@ -40,9 +50,24 @@ class BookPage extends React.PureComponent<Props, {}> {
       <div>
         <Head>
           <title>Hiệu sách Thuật - {book.title}</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
-        <MediaQuery query="(min-device-width: 600px)">
+        <MediaQuery minWidth={601}>
           <BookDesktopLayout logo={logo} searchBox={searchBox} book={bookElement} footer={footer} />
+        </MediaQuery>
+        <MediaQuery maxWidth={600}>
+          <BookMobileLayout logo={logo} menu={
+              <Menu>
+                {Object.keys(Category).map((key) => {
+                  const category = Category[key];
+                  return (
+                    <A href={`/list?category=${category}`}>
+                      <span>{category}</span>
+                    </A>
+                  );
+                })}
+              </Menu>
+            } searchBox={searchBox} book={bookElement} footer={footer} />
         </MediaQuery>
       </div>
     );

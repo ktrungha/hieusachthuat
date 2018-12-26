@@ -9,6 +9,16 @@ import MediaQuery from 'react-responsive';
 import Head from 'next/head';
 import ListBooks, { fetchSize } from '../components/ListBooks';
 import axios from 'axios';
+import ListMobileLayout from '../components/ListMobileLayout';
+import Category from '../models/Category';
+import { stack as Menu } from 'react-burger-menu';
+import styled from 'styled-components';
+
+const A = styled.a`
+  text-decoration: none;
+  color: inherit;
+  flex-grow: 1;
+`;
 
 interface Props {
   books: Book[];
@@ -57,25 +67,63 @@ class List extends React.PureComponent<Props, {}> {
     const logo = <Logo />;
     const searchBox = <SearchBox />;
     const footer = <Footer />;
-    const list = (
-      <ListBooks
-        books={books}
-        fetchMore={async (offset, limit) => {
-          const response = await axios.get(
-            `/api/books?${baseQuery}&_sort=time&_order=desc&_start=${offset}&_limit=${limit}`,
-          );
-          return response.data as Book[];
-        }}
-      />
-    );
 
     return (
       <div>
         <Head>
           <title>Hiệu sách Thuật - {title}</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
-        <MediaQuery query="(min-device-width: 600px)">
-          <ListDesktopLayout logo={logo} searchBox={searchBox} list={list} footer={footer} />
+        <MediaQuery minWidth={601}>
+          <ListDesktopLayout
+            logo={logo}
+            searchBox={searchBox}
+            list={
+              <ListBooks
+                books={books}
+                fetchMore={async (offset, limit) => {
+                  const response = await axios.get(
+                    `/api/books?${baseQuery}` +
+                      `&_sort=time&_order=desc&_start=${offset}&_limit=${limit}`,
+                  );
+                  return response.data as Book[];
+                }}
+              />
+            }
+            footer={footer}
+          />
+        </MediaQuery>
+        <MediaQuery maxWidth={600}>
+          <ListMobileLayout
+            logo={logo}
+            menu={
+              <Menu>
+                {Object.keys(Category).map((key) => {
+                  const category = Category[key];
+                  return (
+                    <A href={`/list?category=${category}`}>
+                      <span>{category}</span>
+                    </A>
+                  );
+                })}
+              </Menu>
+            }
+            searchBox={searchBox}
+            list={
+              <ListBooks
+                mobile={true}
+                books={books}
+                fetchMore={async (offset, limit) => {
+                  const response = await axios.get(
+                    `/api/books?${baseQuery}` +
+                      `&_sort=time&_order=desc&_start=${offset}&_limit=${limit}`,
+                  );
+                  return response.data as Book[];
+                }}
+              />
+            }
+            footer={footer}
+          />
         </MediaQuery>
       </div>
     );

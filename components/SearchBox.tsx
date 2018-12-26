@@ -29,7 +29,6 @@ class SearchBox extends React.PureComponent<Props, State> {
     if (str === '') {
       this.setState({ options: [] as Book[] });
     } else {
-      this.setState({ search: str });
       fetch(`/api/books?title_like=${str}&_sort=title`)
         .then((response) => {
           return response.json();
@@ -43,13 +42,14 @@ class SearchBox extends React.PureComponent<Props, State> {
   render() {
     const { options, search } = this.state;
     return (
-      <div style={{ margin: '15px' }}>
+      <div style={{ margin: '0 10px' }}>
         <Autosuggest
           onSuggestionsClearRequested={() => {
             this.setState({ options: [] });
           }}
           suggestions={options}
           inputProps={{
+            placeholder: 'Nhập tên sách để tìm kiếm...',
             onChange: (_event, { newValue }) => {
               this.setState({ search: newValue });
             },

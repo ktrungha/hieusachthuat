@@ -17,16 +17,28 @@ class NewBooks extends React.PureComponent<Props, {}> {
           boxShadow: `0 0 5px 1px ${colors.shadow}`,
           borderRadius: '10px',
           margin: '15px',
-          width: '100%',
+          width: 'calc(100% - 30px)',
+          overflow: 'hidden',
         }}
       >
-        <div style={{ margin: '15px 25px', marginBottom: '0', fontSize: '1.3rem' }}>Sách mới:</div>
+        <div
+          style={{
+            padding: '10px 20px',
+            marginBottom: '0',
+            fontSize: '1.2rem',
+            backgroundColor: colors.blue,
+            color: 'white',
+          }}
+        >
+          Sách mới:
+        </div>
         <div
           style={{
             alignSelf: 'center',
-            display: 'flex',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
+            margin: '0 10px',
+            width: 'calc(100% - 20px)',
+            overflowX: 'auto',
+            whiteSpace: 'nowrap',
           }}
         >
           {this.props.books.map((book: Book) => {

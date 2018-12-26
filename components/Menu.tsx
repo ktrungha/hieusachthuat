@@ -6,12 +6,22 @@ import Category from '../models/Category';
 const MenuItem = styled.div`
   padding: 10px 20px;
   font-size: 1.1rem;
-  border-top: 1px solid ${colors.border};
+  border-top: 0.5px solid ${colors.border};
+  position: relative;
+  display: flex;
   :hover {
     cursor: pointer;
   }
   :first-child {
     border-top: none;
+  }
+  :hover > div {
+    transition: transform 200ms ease-in-out ;
+    transform: translate(0)
+  }
+  :hover > a {
+    color: white;
+    transition: color 0ms ease-in-out 200ms;
   }
 `;
 
@@ -30,6 +40,19 @@ const Container = styled.div`
 const A = styled.a`
   text-decoration: none;
   color: inherit;
+  flex-grow: 1;
+`;
+
+const Background = styled.div`
+  background-color: #ff9946;
+  transform: translate(-100%);
+  transition: transform 100ms ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
 `;
 
 const Menu: React.SFC = () => {
@@ -45,18 +68,19 @@ const Menu: React.SFC = () => {
       >
         Danh Mục
       </div>
-      <div>
+      <nav>
         {Object.keys(Category).map((key) => {
           const category = Category[key];
           return (
-            <MenuItem>
+            <MenuItem key={category}>
+              <Background />
               <A href={`/list?category=${category}`}>
-                <span style={{ textDecoration: 'none' }}>{category}</span>
+                <span>{category}</span>
               </A>
             </MenuItem>
           );
         })}
-      </div>
+      </nav>
     </Container>
   );
 };
