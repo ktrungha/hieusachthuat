@@ -13,6 +13,7 @@ import ListMobileLayout from '../components/ListMobileLayout';
 import Category from '../models/Category';
 import { stack as Menu } from 'react-burger-menu';
 import styled from 'styled-components';
+import { desktopMinWidth, mobileMaxWidth } from '../styles';
 
 const A = styled.a`
   text-decoration: none;
@@ -67,6 +68,17 @@ class List extends React.PureComponent<Props, {}> {
     const logo = <Logo />;
     const searchBox = <SearchBox />;
     const footer = <Footer />;
+    const list = (
+      <ListBooks
+        books={books}
+        fetchMore={async (offset, limit) => {
+          const response = await axios.get(
+            `/api/books?${baseQuery}` + `&_sort=time&_order=desc&_start=${offset}&_limit=${limit}`,
+          );
+          return response.data as Book[];
+        }}
+      />
+    );
 
     return (
       <div>
@@ -74,26 +86,10 @@ class List extends React.PureComponent<Props, {}> {
           <title>Hiệu sách Thuật - {title}</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
-        <MediaQuery minWidth={601}>
-          <ListDesktopLayout
-            logo={logo}
-            searchBox={searchBox}
-            list={
-              <ListBooks
-                books={books}
-                fetchMore={async (offset, limit) => {
-                  const response = await axios.get(
-                    `/api/books?${baseQuery}` +
-                      `&_sort=time&_order=desc&_start=${offset}&_limit=${limit}`,
-                  );
-                  return response.data as Book[];
-                }}
-              />
-            }
-            footer={footer}
-          />
+        <MediaQuery minWidth={desktopMinWidth}>
+          <ListDesktopLayout logo={logo} searchBox={searchBox} list={list} footer={footer} />
         </MediaQuery>
-        <MediaQuery maxWidth={600}>
+        <MediaQuery maxWidth={mobileMaxWidth}>
           <ListMobileLayout
             logo={logo}
             menu={
@@ -101,7 +97,7 @@ class List extends React.PureComponent<Props, {}> {
                 {Object.keys(Category).map((key) => {
                   const category = Category[key];
                   return (
-                    <A href={`/list?category=${category}`}>
+                    <A key={category} href={`/list?category=${category}`}>
                       <span>{category}</span>
                     </A>
                   );
@@ -109,19 +105,7 @@ class List extends React.PureComponent<Props, {}> {
               </Menu>
             }
             searchBox={searchBox}
-            list={
-              <ListBooks
-                mobile={true}
-                books={books}
-                fetchMore={async (offset, limit) => {
-                  const response = await axios.get(
-                    `/api/books?${baseQuery}` +
-                      `&_sort=time&_order=desc&_start=${offset}&_limit=${limit}`,
-                  );
-                  return response.data as Book[];
-                }}
-              />
-            }
+            list={list}
             footer={footer}
           />
         </MediaQuery>

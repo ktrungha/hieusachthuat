@@ -1,4 +1,5 @@
 import React from 'react';
+import colors, { oranges } from '../styles/colors';
 
 class Logo extends React.PureComponent {
   render() {
@@ -14,10 +15,10 @@ class Logo extends React.PureComponent {
             </defs>
             <text
               style={{
-                fill: '#ff9523',
+                fill: colors.orange,
                 fontWeight: 700,
                 strokeWidth: '0.5px',
-                stroke: '#cc5e1a',
+                stroke: oranges.dark,
               }}
               x="10"
               y="70%"

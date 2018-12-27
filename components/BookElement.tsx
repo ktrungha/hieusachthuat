@@ -1,6 +1,8 @@
 import React from 'react';
 import Book from '../models/Book';
 import styled from 'styled-components';
+import { media } from '../styles';
+import colors from '../styles/colors';
 
 const Container = styled.div`
   margin: 20px 10px;
@@ -12,31 +14,33 @@ const Container = styled.div`
   display: inline-block;
   min-width: 110px;
   max-width: 200px;
+  width: calc(20% - 20px);
   :hover {
     cursor: pointer;
+    background-color: ${colors.orange};
+    color: white;
+    transition: background-color 300ms;
   }
+  ${media.mobile`
+    margin: 10px 5px;
+    width: calc(45% - 10px);
+  `}
 `;
 
 interface Props {
   book: Book;
   edit: boolean;
-  mobile: boolean;
 }
 
 class BookElement extends React.PureComponent<Props, {}> {
   public static defaultProps = {
     edit: false,
-    mobile: false,
   };
 
   render() {
-    const { book, edit, mobile } = this.props;
+    const { book, edit } = this.props;
     return (
-      <Container
-        style={{
-          width: mobile ? 'calc(50% - 20px)' : 'calc(20% - 20px)',
-        }}
-      >
+      <Container>
         <a
           style={{ textDecoration: 'none', color: 'inherit' }}
           href={edit ? `/edit-book?id=${book.id}` : `/book?id=${book.id}`}
@@ -47,9 +51,10 @@ class BookElement extends React.PureComponent<Props, {}> {
               padding: '15px 10px',
               height: '45px',
               display: 'flex',
-              alignItems: 'center',
+              textAlign: 'center',
               maxWidth: '190px',
               whiteSpace: 'normal',
+              textOverflow: 'ellipsis',
             }}
           >
             {book.title}

@@ -16,12 +16,12 @@ const MenuItem = styled.div`
     border-top: none;
   }
   :hover > div {
-    transition: transform 200ms ease-in-out ;
+    transition: transform 300ms ;
     transform: translate(0)
   }
   :hover > a {
     color: white;
-    transition: color 0ms ease-in-out 200ms;
+    transition: color 0ms none 300ms;
   }
 `;
 
@@ -46,7 +46,7 @@ const A = styled.a`
 const Background = styled.div`
   background-color: #ff9946;
   transform: translate(-100%);
-  transition: transform 100ms ease-in-out;
+  transition: transform 300ms;
   position: absolute;
   top: 0;
   left: 0;

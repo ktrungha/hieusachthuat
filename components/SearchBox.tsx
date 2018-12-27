@@ -29,7 +29,7 @@ class SearchBox extends React.PureComponent<Props, State> {
     if (str === '') {
       this.setState({ options: [] as Book[] });
     } else {
-      fetch(`/api/books?title_like=${str}&_sort=title`)
+      fetch(`/api/books?title_like=${str}&_sort=title&_start=0&_limit=20`)
         .then((response) => {
           return response.json();
         })

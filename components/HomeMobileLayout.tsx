@@ -1,10 +1,8 @@
 import React from 'react';
-import { slide as Menu } from 'react-burger-menu';
-import Category from '../models/Category';
 import styled from 'styled-components';
 import '../styles/burgerMenu.css';
-import colors from '../styles/colors';
 import BaseMobileLayout from './BaseMobileLayout';
+import { media } from '../styles';
 
 interface Props {
   logo: React.ReactNode;
@@ -15,10 +13,11 @@ interface Props {
   footer: React.ReactNode;
 }
 
-const A = styled.a`
-  text-decoration: none;
-  color: inherit;
-  flex-grow: 1;
+const CoverContainer = styled.div`
+  margin: 15px;
+  ${media.mobile`
+    margin: 10px;
+  `}
 `;
 
 class HomeMobileLayout extends React.PureComponent<Props, {}> {
@@ -26,7 +25,7 @@ class HomeMobileLayout extends React.PureComponent<Props, {}> {
     const { logo, menu, searchBox, cover, newBooks, footer } = this.props;
     const content = (
       <>
-        <div style={{ margin: '15px' }}>{cover}</div>
+        <CoverContainer>{cover}</CoverContainer>
         <div style={{ overflowX: 'auto', width: '100%' }}>{newBooks}</div>{' '}
       </>
     );

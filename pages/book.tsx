@@ -12,6 +12,7 @@ import BookMobileLayout from '../components/BookMobileLayout';
 import { stack as Menu } from 'react-burger-menu';
 import styled from 'styled-components';
 import Category from '../models/Category';
+import { desktopMinWidth, mobileMaxWidth } from '../styles';
 
 const A = styled.a`
   text-decoration: none;
@@ -52,16 +53,16 @@ class BookPage extends React.PureComponent<Props, {}> {
           <title>Hiệu sách Thuật - {book.title}</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
-        <MediaQuery minWidth={601}>
+        <MediaQuery minWidth={desktopMinWidth}>
           <BookDesktopLayout logo={logo} searchBox={searchBox} book={bookElement} footer={footer} />
         </MediaQuery>
-        <MediaQuery maxWidth={600}>
+        <MediaQuery maxWidth={mobileMaxWidth}>
           <BookMobileLayout logo={logo} menu={
               <Menu>
                 {Object.keys(Category).map((key) => {
                   const category = Category[key];
                   return (
-                    <A href={`/list?category=${category}`}>
+                    <A key={category} href={`/list?category=${category}`}>
                       <span>{category}</span>
                     </A>
                   );

@@ -3,12 +3,12 @@
   position: relative;
   width: 34px;
   height: 28px;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #ff9523;
+  background: #ffffff;
 }
 
 /* Position and sizing of clickable cross button */

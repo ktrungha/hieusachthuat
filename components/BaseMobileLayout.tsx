@@ -20,7 +20,7 @@ const BaseMobileLayout: React.SFC<Props> = (props) => {
         style={{
           alignSelf: 'stretch',
           backgroundColor: colors.blue,
-          height: '10px',
+          height: '5px',
           margin: '0 2px',
         }}
       />
@@ -30,6 +30,8 @@ const BaseMobileLayout: React.SFC<Props> = (props) => {
           alignSelf: 'stretch',
           display: 'flex',
           alignItems: 'center',
+          backgroundColor: colors.blue,
+          padding: '10px 0',
         }}
       >
         {menu}
