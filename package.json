@@ -15,6 +15,7 @@
     "express": "^4.16.4",
     "lodash": "^4.17.11",
     "next": "7.0.2",
+    "next-ga": "^2.3.4",
     "react": "16.6.3",
     "react-burger-menu": "^2.5.4",
     "react-dom": "16.6.3",

@@ -75,7 +75,7 @@ class Home extends React.PureComponent<Props, {}> {
             content={
               'Trang chủ của hiệu sách Thuật 80b Bà Triệu Hà Nội.' +
               ' Cung cấp các loại sách giáo trình,' +
-              ' luyện thi, thiểu nhi, truyện ngoại ngữ tiếng Anh, tiếng Đức...'
+              ' luyện thi, thiếu nhi, truyện ngoại ngữ tiếng Anh, tiếng Đức...'
             }
           />
           <meta
