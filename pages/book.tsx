@@ -33,6 +33,20 @@ class BookPage extends React.PureComponent<Props, {}> {
     return { book: response.data };
   }
 
+  componentDidMount() {
+    (function(d, s, id) {
+      let js = d.getElementsByTagName(s)[0] as HTMLScriptElement;
+      const fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s) as HTMLScriptElement;
+      js.id = id;
+      js.src =
+        'https://connect.facebook.net/vi_VN/sdk.js' +
+        '#xfbml=1&version=v3.2&appId=2220937081486681&autoLogAppEvents=1';
+      fjs.parentNode && fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'facebook-jssdk');
+  }
+
   render() {
     const { book } = this.props;
     const logo = <Logo />;
@@ -44,6 +58,11 @@ class BookPage extends React.PureComponent<Props, {}> {
       >
         <img src={book.image} style={{ width: '250px', height: '250px', objectFit: 'contain' }} />
         <div style={{ margin: '10px 20px' }}>{book.title}</div>
+        <div
+          className="fb-comments"
+          data-numposts="10"
+          data-order-by="reverse_time"
+        />
       </div>
     );
 
@@ -53,11 +72,14 @@ class BookPage extends React.PureComponent<Props, {}> {
           <title>Hiệu sách Thuật - {book.title}</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
+        <div id="fb-root" />
         <MediaQuery minWidth={desktopMinWidth}>
           <BookDesktopLayout logo={logo} searchBox={searchBox} book={bookElement} footer={footer} />
         </MediaQuery>
         <MediaQuery maxWidth={mobileMaxWidth}>
-          <BookMobileLayout logo={logo} menu={
+          <BookMobileLayout
+            logo={logo}
+            menu={
               <Menu>
                 {Object.keys(Category).map((key) => {
                   const category = Category[key];
@@ -68,7 +90,11 @@ class BookPage extends React.PureComponent<Props, {}> {
                   );
                 })}
               </Menu>
-            } searchBox={searchBox} book={bookElement} footer={footer} />
+            }
+            searchBox={searchBox}
+            book={bookElement}
+            footer={footer}
+          />
         </MediaQuery>
       </div>
     );
