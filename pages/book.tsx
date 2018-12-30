@@ -71,6 +71,7 @@ class BookPage extends React.PureComponent<Props, {}> {
         <Head>
           <title>Hiệu sách Thuật - {book.title}</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta property="fb:app_id" content="2220937081486681" />
         </Head>
         <div id="fb-root" />
         <MediaQuery minWidth={desktopMinWidth}>
