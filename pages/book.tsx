@@ -13,6 +13,10 @@ import { stack as Menu } from 'react-burger-menu';
 import styled from 'styled-components';
 import Category from '../models/Category';
 import { desktopMinWidth, mobileMaxWidth } from '../styles';
+import LoadingBox from '../components/LoadingBox';
+
+declare const FB: any;
+declare const window: { fbAsyncInit: any };
 
 const A = styled.a`
   text-decoration: none;
@@ -24,7 +28,13 @@ interface Props {
   book: Book;
 }
 
-class BookPage extends React.PureComponent<Props, {}> {
+interface State {
+  commentLoaded: boolean;
+}
+
+class BookPage extends React.PureComponent<Props, State> {
+  state = { commentLoaded: false };
+
   static async getInitialProps(context: NextContext) {
     const bookId = context.query.id;
 
@@ -34,6 +44,12 @@ class BookPage extends React.PureComponent<Props, {}> {
   }
 
   componentDidMount() {
+    window.fbAsyncInit = () => {
+      FB.Event.subscribe('xfbml.render', () => {
+        this.setState({ commentLoaded: true });
+      });
+    };
+
     (function(d, s, id) {
       let js = d.getElementsByTagName(s)[0] as HTMLScriptElement;
       const fjs = d.getElementsByTagName(s)[0];
@@ -49,6 +65,7 @@ class BookPage extends React.PureComponent<Props, {}> {
 
   render() {
     const { book } = this.props;
+    const { commentLoaded } = this.state;
     const logo = <Logo />;
     const searchBox = <SearchBox />;
     const footer = <Footer />;
@@ -58,11 +75,8 @@ class BookPage extends React.PureComponent<Props, {}> {
       >
         <img src={book.image} style={{ width: '250px', height: '250px', objectFit: 'contain' }} />
         <div style={{ margin: '10px 20px' }}>{book.title}</div>
-        <div
-          className="fb-comments"
-          data-numposts="10"
-          data-order-by="reverse_time"
-        />
+        {!commentLoaded && <LoadingBox message="" />}
+        <div className="fb-comments" data-numposts="10" data-order-by="reverse_time" />
       </div>
     );
 
