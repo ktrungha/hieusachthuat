@@ -62,22 +62,15 @@ class Home extends React.PureComponent<Props, {}> {
     const searchBox = <SearchBox />;
     const menu = <Menu />;
     const cover = <Cover />;
-    const newBooks = <NewBooks books1={books1} books2={books2} books3={books3}/>;
+    const newBooks = <NewBooks books1={books1} books2={books2} books3={books3} />;
     const footer = <Footer />;
 
     return (
       <div>
         <Head>
-          <title>Hiệu sách Thuật - 80b Bà Triệu - Hà Nội</title>
+          <title>Hiệu sách Thuật</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta
-            name="description"
-            content={
-              'Trang chủ của hiệu sách Thuật 80b Bà Triệu Hà Nội.' +
-              ' Cung cấp các loại sách giáo trình,' +
-              ' luyện thi, thiếu nhi, truyện ngoại ngữ tiếng Anh, tiếng Đức...'
-            }
-          />
+          <meta name="description" content="Hiệu sách Thuật 80b Bà Triệu Hà Nội." />
           <meta
             name="keywords"
             content={
