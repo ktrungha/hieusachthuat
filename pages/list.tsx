@@ -79,6 +79,7 @@ class List extends React.PureComponent<Props, {}> {
         }}
       />
     );
+    const marker = <div>© 2019 - Hiệu sách Thuật</div>;
 
     return (
       <div>
@@ -86,8 +87,14 @@ class List extends React.PureComponent<Props, {}> {
           <title>Hiệu sách Thuật - {title}</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
-        <MediaQuery minWidth={desktopMinWidth}>
-          <ListDesktopLayout logo={logo} searchBox={searchBox} list={list} footer={footer} />
+        <MediaQuery minWidth={desktopMinWidth} values={{ width: 1200 }}>
+          <ListDesktopLayout
+            logo={logo}
+            searchBox={searchBox}
+            list={list}
+            footer={footer}
+            marker={marker}
+          />
         </MediaQuery>
         <MediaQuery maxWidth={mobileMaxWidth}>
           <ListMobileLayout
@@ -107,6 +114,7 @@ class List extends React.PureComponent<Props, {}> {
             searchBox={searchBox}
             list={list}
             footer={footer}
+            marker={marker}
           />
         </MediaQuery>
       </div>

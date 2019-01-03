@@ -6,12 +6,21 @@ interface Props {
   searchBox: React.ReactNode;
   list: React.ReactNode;
   footer: React.ReactNode;
+  marker: React.ReactNode;
 }
 
 class ListDesktopLayout extends React.PureComponent<Props, {}> {
   render() {
-    const { logo, searchBox, list, footer } = this.props;
-    return <BaseDesktopLayout logo={logo} searchBox={searchBox} content={list} footer={footer} />;
+    const { logo, searchBox, list, footer, marker } = this.props;
+    return (
+      <BaseDesktopLayout
+        logo={logo}
+        searchBox={searchBox}
+        content={list}
+        footer={footer}
+        marker={marker}
+      />
+    );
   }
 }
 

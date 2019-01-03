@@ -7,12 +7,14 @@ interface Props {
   book: React.ReactNode;
   footer: React.ReactNode;
   menu: React.ReactNode;
+  marker: React.ReactNode;
 }
 const BookMobileLayout: React.SFC<Props> = (props) => {
-  const { logo, menu, searchBox, book, footer } = props;
+  const { logo, menu, searchBox, book, footer, marker } = props;
 
   return (
     <BaseMobileLayout
+      marker={marker}
       logo={logo}
       menu={menu}
       searchBox={searchBox}

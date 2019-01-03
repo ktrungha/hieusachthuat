@@ -96,6 +96,8 @@ class BookPage extends React.PureComponent<Props, State> {
       </div>
     );
 
+    const marker = <div>© 2019 - Hiệu sách Thuật</div>;
+
     return (
       <div>
         <Head>
@@ -104,8 +106,14 @@ class BookPage extends React.PureComponent<Props, State> {
           <meta property="fb:app_id" content="2220937081486681" />
         </Head>
         <div id="fb-root" />
-        <MediaQuery minWidth={desktopMinWidth}>
-          <BookDesktopLayout logo={logo} searchBox={searchBox} book={bookElement} footer={footer} />
+        <MediaQuery minWidth={desktopMinWidth} values={{ width: 1200 }}>
+          <BookDesktopLayout
+            logo={logo}
+            searchBox={searchBox}
+            book={bookElement}
+            footer={footer}
+            marker={marker}
+          />
         </MediaQuery>
         <MediaQuery maxWidth={mobileMaxWidth}>
           <BookMobileLayout
@@ -125,6 +133,7 @@ class BookPage extends React.PureComponent<Props, State> {
             searchBox={searchBox}
             book={bookElement}
             footer={footer}
+            marker={marker}
           />
         </MediaQuery>
       </div>

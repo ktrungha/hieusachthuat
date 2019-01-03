@@ -40,6 +40,7 @@ const BaseMobileLayout: React.SFC<Props> = (props) => {
       </nav>
       <div style={{ alignSelf: 'stretch' }}>{content}</div>
       <div style={{ flex: 1 }} />
+      <div style={{ padding: '10px', textAlign: 'center' }}>{marker}</div>
       <div
         style={{
           alignSelf: 'stretch',
@@ -48,7 +49,6 @@ const BaseMobileLayout: React.SFC<Props> = (props) => {
         }}
       >
         {footer}
-        <div style={{ padding: '10px', textAlign: 'center' }}>{marker}</div>
       </div>
     </div>
   );

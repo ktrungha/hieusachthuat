@@ -80,7 +80,7 @@ class Home extends React.PureComponent<Props, {}> {
             }
           />
         </Head>
-        <MediaQuery minWidth={desktopMinWidth}>
+        <MediaQuery minWidth={desktopMinWidth} values={{ width: 1200 }}>
           <HomeDesktopLayout
             logo={logo}
             searchBox={searchBox}

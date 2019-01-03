@@ -7,11 +7,12 @@ interface Props {
   list: React.ReactNode;
   footer: React.ReactNode;
   menu: React.ReactNode;
+  marker: React.ReactNode;
 }
 
 class ListMobileLayout extends React.PureComponent<Props, {}> {
   render() {
-    const { logo, menu, searchBox, list, footer } = this.props;
+    const { logo, menu, searchBox, list, footer, marker } = this.props;
 
     return (
       <BaseMobileLayout
@@ -20,6 +21,7 @@ class ListMobileLayout extends React.PureComponent<Props, {}> {
         searchBox={searchBox}
         content={list}
         footer={footer}
+        marker={marker}
       />
     );
   }
