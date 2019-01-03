@@ -5,10 +5,11 @@ interface Props {
   searchBox: React.ReactNode;
   content: React.ReactNode;
   footer: React.ReactNode;
+  marker: React.ReactNode;
 }
 
 const BaseDesktopLayout: React.SFC<Props> = (props) => {
-  const { logo, searchBox, content, footer } = props;
+  const { logo, searchBox, content, marker, footer } = props;
   return (
     <div
       style={{
@@ -55,9 +56,10 @@ const BaseDesktopLayout: React.SFC<Props> = (props) => {
             maxWidth: '1200px',
             width: '100%',
             display: 'flex',
-            justifyContent: 'flex-end',
+            justifyContent: 'space-between',
           }}
         >
+          <div style={{ display: 'flex', alignItems: 'flex-end', padding: '10px' }}>{marker}</div>
           <div>{footer}</div>
         </div>
       </div>

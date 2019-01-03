@@ -7,10 +7,11 @@ interface Props {
   content: React.ReactNode;
   footer: React.ReactNode;
   menu: React.ReactNode;
+  marker: React.ReactNode;
 }
 
 const BaseMobileLayout: React.SFC<Props> = (props) => {
-  const { logo, searchBox, footer, content, menu } = props;
+  const { logo, searchBox, footer, marker, content, menu } = props;
   return (
     <div
       id="outer-container"
@@ -44,10 +45,10 @@ const BaseMobileLayout: React.SFC<Props> = (props) => {
           alignSelf: 'stretch',
           backgroundColor: '#d6d7d8',
           flexDirection: 'column',
-          alignItems: 'center',
         }}
       >
         {footer}
+        <div style={{ padding: '10px', textAlign: 'center' }}>{marker}</div>
       </div>
     </div>
   );

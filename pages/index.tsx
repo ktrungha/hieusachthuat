@@ -64,6 +64,7 @@ class Home extends React.PureComponent<Props, {}> {
     const cover = <Cover />;
     const newBooks = <NewBooks books1={books1} books2={books2} books3={books3} />;
     const footer = <Footer />;
+    const marker = <div>© 2019 - Hiệu sách Thuật</div>;
 
     return (
       <div>
@@ -87,6 +88,7 @@ class Home extends React.PureComponent<Props, {}> {
             cover={cover}
             newBooks={newBooks}
             footer={footer}
+            marker={marker}
           />
         </MediaQuery>
         <MediaQuery maxWidth={mobileMaxWidth}>
@@ -108,6 +110,7 @@ class Home extends React.PureComponent<Props, {}> {
             cover={cover}
             newBooks={newBooks}
             footer={footer}
+            marker={marker}
           />
         </MediaQuery>
       </div>

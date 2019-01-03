@@ -11,6 +11,7 @@ interface Props {
   cover: React.ReactNode;
   newBooks: React.ReactNode;
   footer: React.ReactNode;
+  marker: React.ReactNode;
 }
 
 const CoverContainer = styled.div`
@@ -22,7 +23,7 @@ const CoverContainer = styled.div`
 
 class HomeMobileLayout extends React.PureComponent<Props, {}> {
   render() {
-    const { logo, menu, searchBox, cover, newBooks, footer } = this.props;
+    const { logo, menu, searchBox, cover, newBooks, footer, marker } = this.props;
     const content = (
       <>
         <CoverContainer>{cover}</CoverContainer>
@@ -37,6 +38,7 @@ class HomeMobileLayout extends React.PureComponent<Props, {}> {
         searchBox={searchBox}
         content={content}
         footer={footer}
+        marker={marker}
       />
     );
   }

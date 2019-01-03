@@ -8,10 +8,11 @@ interface Props {
   cover: React.ReactNode;
   newBooks: React.ReactNode;
   footer: React.ReactNode;
+  marker: React.ReactNode;
 }
 
 const HomeDesktopLayout: React.SFC<Props> = (props) => {
-  const { logo, searchBox, menu, cover, newBooks, footer } = props;
+  const { logo, searchBox, menu, cover, newBooks, footer, marker } = props;
 
   const content = (
     <>
@@ -22,7 +23,15 @@ const HomeDesktopLayout: React.SFC<Props> = (props) => {
       <div style={{ display: 'flex', alignSelf: 'stretch' }}>{newBooks}</div>
     </>
   );
-  return <BaseDesktopLayout logo={logo} searchBox={searchBox} content={content} footer={footer} />;
+  return (
+    <BaseDesktopLayout
+      logo={logo}
+      searchBox={searchBox}
+      content={content}
+      footer={footer}
+      marker={marker}
+    />
+  );
 };
 
 export default HomeDesktopLayout;
