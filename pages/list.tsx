@@ -87,7 +87,7 @@ class List extends React.PureComponent<Props, {}> {
           <title>Hiệu sách Thuật - {title}</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
-        <MediaQuery minWidth={desktopMinWidth} values={{ width: 1200 }}>
+        <MediaQuery minWidth={desktopMinWidth}>
           <ListDesktopLayout
             logo={logo}
             searchBox={searchBox}

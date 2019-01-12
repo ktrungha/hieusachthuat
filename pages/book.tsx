@@ -106,7 +106,7 @@ class BookPage extends React.PureComponent<Props, State> {
           <meta property="fb:app_id" content="2220937081486681" />
         </Head>
         <div id="fb-root" />
-        <MediaQuery minWidth={desktopMinWidth} values={{ width: 1200 }}>
+        <MediaQuery minWidth={desktopMinWidth}>
           <BookDesktopLayout
             logo={logo}
             searchBox={searchBox}
