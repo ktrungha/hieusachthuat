@@ -4,6 +4,7 @@ import EditBook from '../components/EditBook';
 import Book from '../models/Book';
 import Axios from 'axios';
 import { withRouter, WithRouterProps } from 'next/router';
+import Category from '../models/Category';
 
 const Container = styled.div`
   display: flex;
@@ -20,7 +21,7 @@ interface Props extends WithRouterProps {}
 
 class EditNewBook extends React.PureComponent<Props, State> {
   state = {
-    book: {} as Book,
+    book: { category: Category.sachGiaoTrinh } as Book,
   };
   render() {
     const { book } = this.state;
