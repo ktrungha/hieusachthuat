@@ -5,6 +5,7 @@ import Book from '../models/Book';
 import Axios from 'axios';
 import { withRouter, WithRouterProps } from 'next/router';
 import Category from '../models/Category';
+import Link from 'next/link';
 
 const Container = styled.div`
   display: flex;
@@ -26,28 +27,45 @@ class EditNewBook extends React.PureComponent<Props, State> {
   render() {
     const { book } = this.state;
     return (
-      <Container>
-        <EditBook
-          book={book}
-          onChange={(book) => {
-            this.setState({ book });
+      <div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-evenly',
+            margin: '20px',
+            alignSelf: 'stretch',
           }}
-        />
+        >
+          <Link href="/edit-search">
+            <a>Tìm sách</a>
+          </Link>
+          <Link href="/edit-new-book">
+            <a>Thêm sách</a>
+          </Link>
+        </div>
         <Container>
-          <button
-            onClick={async () => {
-              const time = new Date().getTime();
-              book.time = time;
-              Axios.post('/api/books', book, {
-                headers: { 'Content-Type': 'application/json' },
-              });
-              window.location.reload();
+          <EditBook
+            book={book}
+            onChange={(book) => {
+              this.setState({ book });
             }}
-          >
-            Tạo mới
-          </button>
+          />
+          <Container>
+            <button
+              onClick={async () => {
+                const time = new Date().getTime();
+                book.time = time;
+                Axios.post('/api/books', book, {
+                  headers: { 'Content-Type': 'application/json' },
+                });
+                window.location.reload();
+              }}
+            >
+              Tạo mới
+            </button>
+          </Container>
         </Container>
-      </Container>
+      </div>
     );
   }
 }
