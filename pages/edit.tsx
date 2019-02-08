@@ -48,7 +48,7 @@ class EditSearch extends React.PureComponent<{}, State> {
             alignSelf: 'stretch',
           }}
         >
-          <Link href="/edit-search">
+          <Link href="/edit">
             <a>Tìm sách</a>
           </Link>
           <Link href="/edit-new-book">

@@ -36,7 +36,7 @@ class EditNewBook extends React.PureComponent<Props, State> {
             alignSelf: 'stretch',
           }}
         >
-          <Link href="/edit-search">
+          <Link href="/edit">
             <a>Tìm sách</a>
           </Link>
           <Link href="/edit-new-book">
@@ -53,12 +53,14 @@ class EditNewBook extends React.PureComponent<Props, State> {
           <Container>
             <button
               onClick={async () => {
-                const time = new Date().getTime();
-                book.time = time;
-                Axios.post('/api/books', book, {
-                  headers: { 'Content-Type': 'application/json' },
-                });
-                window.location.reload();
+                if (book.title && book.image) {
+                  const time = new Date().getTime();
+                  book.time = time;
+                  Axios.post('/api/books', book, {
+                    headers: { 'Content-Type': 'application/json' },
+                  });
+                  window.location.reload();
+                }
               }}
             >
               Tạo mới
