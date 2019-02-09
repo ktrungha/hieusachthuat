@@ -49,7 +49,7 @@ class BookElement extends React.PureComponent<Props, {}> {
           <div
             style={{
               padding: '15px 10px',
-              height: '45px',
+              height: '65px',
               display: 'flex',
               textAlign: 'center',
               maxWidth: '190px',
