@@ -59,7 +59,8 @@ class EditNewBook extends React.PureComponent<Props, State> {
                   Axios.post('/api/books', book, {
                     headers: { 'Content-Type': 'application/json' },
                   });
-                  window.location.reload();
+                  const emptyBook = { category: Category.sachGiaoTrinh } as Book;
+                  this.setState({ book: emptyBook });
                 }
               }}
             >

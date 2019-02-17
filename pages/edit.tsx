@@ -31,9 +31,11 @@ class EditSearch extends React.PureComponent<{}, State> {
   }
 
   fetchBooks = () => {
-    Axios.get(encodeURI(`/api/books?title_like=${this.state.search}`)).then((response) => {
-      this.setState({ books: response.data });
-    });
+    Axios.get(encodeURI(`/api/books?title_like=${this.state.search}&_sort=time&_order=desc`)).then(
+      (response) => {
+        this.setState({ books: response.data });
+      },
+    );
   };
 
   render() {
@@ -84,7 +86,7 @@ class EditSearch extends React.PureComponent<{}, State> {
               />
               <button onClick={this.fetchBooks}>Tìm kiếm</button>
             </div>
-            <div>
+            <div style={{ maxHeight: '750px' }}>
               {books.map((book, _index) => (
                 <BookItem onClick={() => this.setState({ currentBook: { ...book } })}>
                   <img src={book.image} style={{ width: '100px', objectFit: 'contain' }} />
