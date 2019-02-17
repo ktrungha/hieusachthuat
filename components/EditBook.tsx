@@ -56,7 +56,7 @@ class EditBook extends React.PureComponent<Props, {}> {
         <Container>
           Thể loại:&nbsp;
           <Select
-            defaultValue={book.category}
+            value={book.category}
             onChange={(event) => {
               const newBook = { ...book, category: event.target.value };
               onChange(newBook);
