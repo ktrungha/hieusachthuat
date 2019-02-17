@@ -3,7 +3,7 @@ import Book from '../models/Book';
 import BookElement from './BookElement';
 import Button from '@material-ui/core/Button';
 
-export const fetchSize = 10;
+export const fetchSize = 30;
 
 interface Props {
   books: Book[];
