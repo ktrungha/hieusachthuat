@@ -71,6 +71,7 @@ class NewBooks extends React.PureComponent<Props, {}> {
             width: 'calc(100% - 20px)',
             overflowX: 'auto',
             whiteSpace: 'nowrap',
+		display: 'flex',
           }}
         >
           {this.props.books2.map((book: Book) => {
@@ -85,6 +86,7 @@ class NewBooks extends React.PureComponent<Props, {}> {
             width: 'calc(100% - 20px)',
             overflowX: 'auto',
             whiteSpace: 'nowrap',
+		display: 'flex',
           }}
         >
           {this.props.books3.map((book: Book) => {
